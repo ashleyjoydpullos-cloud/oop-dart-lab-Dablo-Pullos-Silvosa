@@ -116,26 +116,46 @@ void main() {
   print('=== School Personnel Management ===');
   final school = School();
 
+  int studentTotal = 0;
+  int teacherTotal = 0;
+
   final studentCount = readCount('How many students will you add? ');
 
   for (var i = 1; i <= studentCount; i++) {
     print('\n-- Student #$i --');
+
     final name = readNonEmptyText('  Name: ');
     final age = readNonNegativeInt('  Age: ');
     final course = readNonEmptyText('  Course: ');
+
     school.addPerson(Student(name, age, course));
+
+    studentTotal++;
+    print('  Student added! Total students: $studentTotal');
   }
 
   final teacherCount = readCount('\nHow many teachers will you add? ');
 
   for (var i = 1; i <= teacherCount; i++) {
     print('\n-- Teacher #$i --');
+
     final name = readNonEmptyText('  Name: ');
     final age = readNonNegativeInt('  Age: ');
     final subject = readNonEmptyText('  Subject: ');
+
     school.addPerson(Teacher(name, age, subject));
+
+    teacherTotal++;
+    print('  Teacher added! Total teachers: $teacherTotal');
   }
+
+  final totalPersonnel = studentTotal + teacherTotal;
 
   print('\n=== School Roster ===');
   school.introduceAll();
+
+  print('\n=== Personnel Count ===');
+  print('Total Students: $studentTotal');
+  print('Total Teachers: $teacherTotal');
+  print('Total Personnel: $totalPersonnel');
 }
